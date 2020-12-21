@@ -1,0 +1,2 @@
+#!/bin/bash
+ for f in *.png; do convert "$f" -alpha copy tmp.png && composite tmp.png -compose copy-opacity ../banner_base.png tmp2.png && convert tmp2.png -fill "rgba(0,1,0,1)" -draw "rectangle 0,0 1,63" -draw "rectangle 2,0 63,1" -draw "rectangle 2,22 64,64" -draw "rectangle 12,2 64,64" -fill none -draw "matte 0,0 floodfill" tmp3.png && convert tmp3.png  -crop 32x32+0+0 +repage -adjoin -interpolate Nearest -filter point -resize 200% crop.png && mv crop.png "$f" && rm tmp.png tmp2.png tmp3.png; done 
